@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React.createElement Practice Bài 2</title>
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 20px;
+      }
+      div {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        justify-content: center;
+        margin-top: 40px;
+      }
+      button,
+      a {
+        background-color: #ec8836;
+        border: none;
+        cursor: pointer;
+        transition: 0.2s all ease;
+        opacity: 1;
+        border-radius: 10px;
+        color: black;
+        text-transform: uppercase;
+        text-decoration: none;
+        font-weight: bolder;
+      }
+
+      button:hover,
+      a:hover {
+        opacity: 0.8;
+      }
+      .btn-primary {
+        background-color: rgb(26, 26, 206);
+        color: #fff;
+      }
+      .btn-primary:hover {
+        background-color: rgb(76, 76, 233);
+      }
+      .btn-rounded {
+        border-radius: 20px;
+      }
+      .btn-bordered {
+        background-color: transparent;
+        border: 2px solid #70707087;
+      }
+      .btn-bordered:hover {
+        background-color: #adfeff;
+        border: 2px solid transparent;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      const sizeStyles = {
+        s: { padding: "6px 12px", fontSize: "12px" },
+        m: { padding: "10px 16px", fontSize: "14px" },
+        l: { padding: "14px 24px", fontSize: "16px" },
+      };
+      function Button({
+        type = "button",
+        primary,
+        rounded,
+        bordered,
+        href,
+        size = "m",
+        children,
+        ...rest
+      }) {
+        const classNames = [];
+        if (primary) classNames.push("btn-primary");
+        if (rounded) classNames.push("btn-rounded");
+        if (bordered) classNames.push("btn-bordered");
+        const Tag = href ? "a" : "button";
+        const style = sizeStyles[size] || sizeStyles.m;
+        console.log("size =", size, "→ style =", style);
+
+        if (href)
+          return (
+            <Tag
+              {...rest}
+              href={href}
+              className={classNames.join(" ")}
+              style={style}
+            >
+              {children}
+            </Tag>
+          );
+        return (
+          <Tag
+            {...rest}
+            className={classNames.join(" ")}
+            style={style}
+            type={type}
+          >
+            {children}
+          </Tag>
+        );
+      }
+
+      const div = (
+        <>
+          <Button>Button Normal</Button>
+
+          <Button primary type="submit" rounded>
+            Submit Button
+          </Button>
+
+          <Button rounded size="s">
+            Small Rounded Button
+          </Button>
+
+          <Button bordered size="l">
+            Large Bordered Button
+          </Button>
+
+          <Button primary href="https://google.com" target="_blank">
+            Link google
+          </Button>
+        </>
+      );
+      const root = ReactDOM.createRoot(document.querySelector("#root"));
+      root.render(div);
+    </script>
+  </body>
+</html>
