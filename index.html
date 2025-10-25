@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bài tập React</title>
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .tasks-list {
+        font-size: 40px;
+        text-transform: uppercase;
+      }
+      li {
+        list-style: none;
+      }
+      a {
+        text-decoration: none;
+        font-size: 20px;
+        color: rgb(249, 249, 249);
+        background-color: rgb(110, 13, 96);
+        padding: 5px 10px;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      const tasks = [
+        {
+          title: "React Practice Bài 1",
+          href: "./rce.html",
+        },
+        {
+          title: "React Practice Bài 2",
+          href: "./jsx.html",
+        },
+        {
+          title: "React Practice Bài 3",
+          href: "./jsx-map.html",
+        },
+      ];
+
+      const tasksList = (
+        <ul className="tasks-list">
+          {"Danh sách bài tập"}
+          {tasks.map((task, index) => (
+            <li key={index}>
+              <a href={task.href}>{task.title}</a>
+            </li>
+          ))}
+        </ul>
+      );
+      const root = ReactDOM.createRoot(document.querySelector("#root"));
+      root.render(tasksList);
+    </script>
+  </body>
+</html>

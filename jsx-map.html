@@ -76,9 +76,9 @@
           isCompleted: true,
         },
       ];
-      const taskList = (
+      const tasksList = (
         <ul>
-          Danh sách việc cần làm
+          {"Danh sách công việc"}
           {tasks.map((task) => (
             <li
               key={task.id}
@@ -90,7 +90,7 @@
         </ul>
       );
       const root = ReactDOM.createRoot(document.querySelector("#root"));
-      root.render(taskList);
+      root.render(tasksList);
     </script>
   </body>
 </html>
