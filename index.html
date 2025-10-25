@@ -8,12 +8,14 @@
       body {
         font-family: Arial, Helvetica, sans-serif;
       }
-      .tasks-list {
-        font-size: 40px;
+      h1 {
         text-transform: uppercase;
+        font-size: 35px;
       }
       li {
         list-style: none;
+        line-height: 1.5;
+        margin-top: 15px;
       }
       a {
         text-decoration: none;
@@ -53,8 +55,8 @@
       ];
 
       const tasksList = (
-        <ul className="tasks-list">
-          {"Danh sách bài tập"}
+        <ul>
+          <h1>Danh sách bài tập</h1>
           {tasks.map((task, index) => (
             <li key={index}>
               <a href={task.href}>{task.title}</a>
